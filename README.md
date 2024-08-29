@@ -10,7 +10,7 @@ ASDF is a framework for training anti-spoofing neural networks for automatic spe
 ## Installation
 1) Clone ASDF repository
    1) Navigate to a folder, where you want ASDF to be placed to
-   2) `git clone https://gitlab.com/ville.vestman/asdf.git`
+   2) `git clone https://github.com/vvestman/asdf.git`
    3) `cd asdf`
 
 Use an environment such as the following:
