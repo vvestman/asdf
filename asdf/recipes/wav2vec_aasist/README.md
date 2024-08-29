@@ -19,7 +19,7 @@ Update the settings in the initial config file [configs/init_config.py](configs/
 
 - Change `paths.output_folder` to point to the desired output folder where all the outputs (networks, scores, results, etc...) should be stored. The folder does not need to exist before running the scripts.
   - Typically you would want to have different output folder for each recipe to avoid accidentally overridding outputs of other recipes.
-- Change ASVspoof19 related dataset folders in [asdf/recipes/wav2vec_aasist/run.py](asdf/recipes/wav2vec_aasist/run.py).
+- Change ASVspoof19 related dataset folders in [run.py](run.py).
 
 ## Running the recipe
 
