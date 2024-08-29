@@ -1,0 +1,11 @@
+torch
+torchaudio
+soundfile
+scipy
+matplotlib
+omegaconf
+hydra-core
+bitarray
+tqdm
+scikit-learn
+sacrebleu

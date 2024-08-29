@@ -10,6 +10,38 @@ import torch.nn.functional as F
 from typing import Union
 
 
+def calculate_virtualsoftmax_logits(inputs, labels, num_classes, mode, dtype=torch.float32):
+    '''
+    Virtual Softmax in PyTorch
+    Original Paper: https://arxiv.org/pdf/1811.12611.pdf
+    '''
+    embedding_size = inputs.size(-1)
+
+    # Initialize the kernel (weight matrix) using Xavier initialization
+    kernel = nn.Parameter(torch.empty(embedding_size, num_classes, dtype=dtype))
+    nn.init.xavier_uniform_(kernel)
+
+    # Calculate the normal WX (output of the final FC layer)
+    WX = torch.matmul(inputs, kernel)
+
+    if mode == "train":
+        # Gather the weights corresponding to the true labels
+        W_yi = kernel[:, labels]
+        W_yi_norm = torch.norm(W_yi, dim=0)
+        X_i_norm = torch.norm(inputs, dim=1)
+
+        # Calculate the virtual class output WX_virt
+        WX_virt = W_yi_norm * X_i_norm
+        WX_virt = torch.clamp(WX_virt, min=1e-10, max=15.0)  # For numerical stability
+        WX_virt = WX_virt.unsqueeze(1)
+
+        # Concatenate the normal WX with WX_virt to form the new logits
+        WX_new = torch.cat([WX, WX_virt], dim=1)
+        return WX_new
+    else:
+        # In testing, return the logits without the virtual class
+        return WX
+
 class GraphAttentionLayer(nn.Module):
     def __init__(self, in_dim, out_dim, **kwargs):
         super().__init__()

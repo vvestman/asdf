@@ -4,18 +4,18 @@ ASDF implements multi-GPU training and scoring using `DistributedDataParallel` a
 
 Instead of the typical single GPU execution:
 ```txt
-python asdf/recipes/wav2vec_aaist/run.py train-ssl-aasist
+python asdf/recipes/wav2vec_aasist/run.py train-ssl-aasist
 ```
 multi-GPU training can be started with a command:
 ```txt
-torchrun --nproc_per_node=2 asdf/recipes/wav2vec_aaist/run.py train-ssl-aasist
+torchrun --nproc_per_node=2 asdf/recipes/wav2vec_aasist/run.py train-ssl-aasist
 ```
 
 Here `--nproc_per_node` specifies the number of GPUs. By default, the above command will use the first two GPUs that you have (or that are visible as determined by CUDA_VISIBLE_DEVICES environment variable). 
 
 `Settings().computing.gpu_ids` allows you to select which GPUs will be used. For example, if you have four GPUs and want to use all except the second GPU, then set `computing.gpu_ids=(0,2,3)` and run
 ```txt
-torchrun --nproc_per_node=3 asdf/recipes/wav2vec_aaist/run.py train-ssl-aasist
+torchrun --nproc_per_node=3 asdf/recipes/wav2vec_aasist/run.py train-ssl-aasist
 ```
 The best place to change `computing.gpu_ids` setting is in either in the `init_config.py` or `run_configs.py` file of the recipe.
 

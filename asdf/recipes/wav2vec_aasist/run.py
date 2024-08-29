@@ -42,8 +42,8 @@ trainListFolder = os.path.join(fileutils.get_folder_of_file(__file__), 'training
 evalListFolder = os.path.join(fileutils.get_folder_of_file(__file__), 'eval_lists') + '/'
 
 # TODO UPDATE the folders below to match yours (no need to update if you do not use the datasets below):
-#databaseFolder = os.environ.get('LOCAL_SCRATCH') + '/'
-databaseFolder = '/data/vvestman/'
+databaseFolder = os.environ.get('LOCAL_SCRATCH') + '/'
+#databaseFolder = '/data/vvestman/'
 
 training_datasets = {
     'asvspoof19': (databaseFolder + 'LA', trainListFolder + 'asvspoof19_la_train_list.txt'),
