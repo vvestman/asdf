@@ -23,6 +23,7 @@ def train_network(trainLoader: DataLoader, resume_epoch: int = 0):
     settings = Settings().network
 
     net = network_io.initialize_net()
+    net = nn.SyncBatchNorm.convert_sync_batchnorm(net)
     net.to(Settings().computing.device)
     net_module = net
     gpu_id = Settings().computing.local_gpu_id

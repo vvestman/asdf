@@ -132,7 +132,7 @@ class SSL_AASIST(BaseNet):
         # post-processing on front-end features
         x = x.transpose(1, 2)  # (bs,feat_out_dim,frame_number)
         x = x.unsqueeze(dim=1)  # add channel
-        x = F.avg_pool2d(x, (3, 3))
+        x = F.max_pool2d(x, (3, 3))
         x = self.first_bn(x)
         x = self.selu(x)
 

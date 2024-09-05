@@ -66,5 +66,5 @@ evaluation_lists = {
 }
 
 
-eer = compute_eer_from_score_file(score_file='/home/ville/scores_epoch_7_asvspoof19_dev_trials.txt')
+eer = compute_eer_from_score_file(score_file='/home/ville/scores_epoch_9_asvspoof19_eval_trials.txt')
 print(eer)

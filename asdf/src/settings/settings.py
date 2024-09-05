@@ -145,6 +145,7 @@ class Settings(AbstractSettings):
             self.computing.device = torch.device('cuda:{}'.format(self.computing.local_gpu_id))
             torch.cuda.set_device(self.computing.device)
             torch.backends.cudnn.benchmark = False
+            torch.backends.cudnn.deterministic = True
             print('Using GPU (gpu_id = {})!'.format(self.computing.local_gpu_id))
         else:
             print('Cuda is not available! Using CPU!')
